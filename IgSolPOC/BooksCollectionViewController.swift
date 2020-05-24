@@ -15,10 +15,11 @@ class BooksCollectionViewController: UICollectionViewController, UICollectionVie
     let service = Services()
     var category: String!
     var bookList: [Book] = []
+    var nextPage: String?
     var searchedBookList: [Book] = []
     var resultSearchController = UISearchController()
     let controller = UISearchController(searchResultsController: nil)
-    var navBar: UINavigationBar = UINavigationBar()
+    var fetchingMore = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +88,7 @@ class BooksCollectionViewController: UICollectionViewController, UICollectionVie
                 else {
                     //Populate the datasource with books.
                     self.bookList = data.results
+                    self.nextPage = data.next
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
                     }
@@ -109,6 +111,7 @@ class BooksCollectionViewController: UICollectionViewController, UICollectionVie
             else {
                 //Populate the datasource with books.
                 self.searchedBookList = data.results
+                self.nextPage = data.next
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
@@ -146,27 +149,50 @@ class BooksCollectionViewController: UICollectionViewController, UICollectionVie
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if resultSearchController.isActive && self.searchedBookList.count > 0 {
-            return self.searchedBookList.count
+        if section == 0 {
+            if resultSearchController.isActive && self.searchedBookList.count > 0 {
+                return self.searchedBookList.count
+            }
+            else {
+                return self.bookList.count
+            }
+        }
+        else if section == 1 && fetchingMore {
+            return 1
         }
         else {
-            return self.bookList.count
+            return 0
         }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? BookCell
-        
-        let listOfBooks = (controller.isActive && self.searchedBookList.count > 0 ) ? self.searchedBookList : self.bookList
-        
-        cell?.book = listOfBooks[indexPath.row]
-    
-        return cell!
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? BookCell
+                
+                let listOfBooks = (controller.isActive && self.searchedBookList.count > 0 ) ? self.searchedBookList : self.bookList
+                
+                cell?.book = listOfBooks[indexPath.row]
+            
+                return cell!
+        }
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "spinnerCell", for: indexPath)
+            
+            let activityIndicator = UIActivityIndicatorView(style: .medium)
+            activityIndicator.startAnimating()
+            
+            cell.addSubview(activityIndicator)
+            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+            activityIndicator.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor).isActive = true
+            activityIndicator.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor).isActive = true
+            
+            return cell
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -230,15 +256,58 @@ class BooksCollectionViewController: UICollectionViewController, UICollectionVie
         return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20);
     }
 
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if (indexPath.row == self.bookList.count - 1 ) { //it's your last cell
+          //Load more data & reload your collection view
+           if !fetchingMore {
+               beginBatchFetch()
+           }
+        }
+    }
+    
+    func beginBatchFetch() {
+        guard let nextPage = self.nextPage else { return }
+        
+        print("fetching ... ")
+        self.fetchingMore = true
+        
+        service.downloadBooks(forNextPage: nextPage) { (data, error) in
+            if let _ = error {
+                // present error alert
+                let alert = UIAlertController(title: "Failed to fetch data", message: error?.localizedDescription, preferredStyle: .alert)
+                let button = UIAlertAction(title: "Retry", style: .default, handler: { (_) in
+                    self.beginBatchFetch()
+                })
+                alert.addAction(button)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else {
+                //Populate the datasource with books.
+                self.bookList.append(contentsOf: data.results)
+                self.nextPage = data.next
+                self.fetchingMore = false
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+            
+        
+    }
 }
 
 // Cache to store the downloaded image.
 let imageCache = NSCache<NSString, UIImage>()
 
 // Download url image
-extension UIImageView {
+class CustomImageView: UIImageView {
+    
+    var imageUrlString: String?
     
     public func imageFromURL(urlString: String) {
+        self.imageUrlString = urlString
+        image = nil
+        
         if let imageFromCache = imageCache.object(forKey: NSString(string: urlString)) {
             self.image = imageFromCache
             return
@@ -260,29 +329,13 @@ extension UIImageView {
             }
             DispatchQueue.main.async(execute: { () -> Void in
                 let imageToCache = UIImage(data: data!)
-                activityIndicator.removeFromSuperview()
+                
+                if self.imageUrlString == urlString {
+                    activityIndicator.removeFromSuperview()
+                    self.image = imageToCache
+                }
                 imageCache.setObject(imageToCache!, forKey: NSString(string: urlString))
-
-                self.image = imageToCache
             })
         }).resume()
-    }
-}
-
-
-extension UITextField {
-    func applyCustomClearButton() {
-        clearButtonMode = .never
-        rightViewMode = .whileEditing
-
-        let clearButton = UIButton(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
-        clearButton.setImage(UIImage(named: "Cancel")!, for: .normal)
-//        clearButton.addTarget(self, action: "clearClicked:", forControlEvents: .TouchUpInside)
-
-        rightView = clearButton
-    }
-
-    func clearClicked(sender:UIButton) {
-        text = ""
     }
 }

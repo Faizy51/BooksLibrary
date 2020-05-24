@@ -51,6 +51,12 @@ class Services {
         }
     }
     
+    func downloadBooks(forNextPage urlString: String, with callback: ((DataModel, Error?) -> ())?) {
+        if let nextPageUrl = URL(string: urlString) {
+            self.downloadBooks(for: nextPageUrl, with: callback)
+        }
+    }
+    
     private func downloadBooks(for url: URL, with callback: ((DataModel, Error?) -> ())?) {
         self.session.dataTask(with: url) { (data, response, error) in
             if let responseError = error {

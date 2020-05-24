@@ -112,7 +112,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="114" height="215"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ADs-lx-4Qr">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ADs-lx-4Qr" customClass="CustomImageView" customModule="IgSolPOC" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="114" height="162"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="162" id="F5E-tJ-f66"/>
@@ -157,6 +157,15 @@
                                     <outlet property="bookImage" destination="ADs-lx-4Qr" id="cQ8-e4-1cT"/>
                                     <outlet property="bookName" destination="VzT-Ue-tml" id="y5G-kB-meM"/>
                                 </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="spinnerCell" id="Evk-CS-tl3">
+                                <rect key="frame" x="124" y="81" width="266" height="53"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RZK-uh-G7I">
+                                    <rect key="frame" x="0.0" y="0.0" width="266" height="53"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                                <size key="customSize" width="266" height="53"/>
                             </collectionViewCell>
                         </cells>
                         <connections>
