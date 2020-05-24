@@ -55,8 +55,4 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return 75
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! CategoryCell
-        cell.animateSelection()
-    }
 }

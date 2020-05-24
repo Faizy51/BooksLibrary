@@ -172,7 +172,54 @@ class BooksCollectionViewController: UICollectionViewController, UICollectionVie
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let listOfBooks = (controller.isActive && self.searchedBookList.count > 0 ) ? self.searchedBookList : self.bookList
         
-        let urlToOpen = listOfBooks[indexPath.row].formats
+        let cell = collectionView.cellForItem(at: indexPath) as! BookCell
+        
+        // Animate selection
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 6, options: [], animations: {
+            cell.contentView.transform = CGAffineTransform.init(translationX: 0, y: 20)
+        }, completion: { (finished) in
+           cell.contentView.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+        })
+        
+        /* Select appropriate book format.
+            1. HTML
+            2. PDF
+            3. TXT
+         */
+        let bookFormats = listOfBooks[indexPath.row].formats
+        var format: String? = nil
+        
+        if let html = bookFormats["text/html; charset=utf-8"], !html.hasSuffix(".zip") {
+            format = html
+        }
+        else if let html = bookFormats["text/html; charset=iso-8859-1"], !html.hasSuffix(".zip") {
+            format = html
+        }
+        else if let pdf = bookFormats["application/pdf"], !pdf.hasSuffix(".zip") {
+            format = pdf
+        }
+        else if let txt = bookFormats["text/plain; charset=utf-8"], !txt.hasSuffix(".zip") {
+            format = txt
+        }
+        else if let txt = bookFormats["text/plain; charset=iso-8859-1"], !txt.hasSuffix(".zip") {
+            format = txt
+        }
+        else if let txt = bookFormats["text/plain"], !txt.hasSuffix(".zip") {
+            format = txt
+        }
+        
+        if let formatToOpen = format, let urlToOpen = URL(string: formatToOpen) {
+            if UIApplication.shared.canOpenURL(urlToOpen) {
+                UIApplication.shared.open(urlToOpen, options: [ : ], completionHandler: nil)
+            }
+        }
+        else {
+            let alert = UIAlertController(title: "No viewable version available", message: "", preferredStyle: .alert)
+            let button = UIAlertAction(title: "Okay", style: .default, handler: nil)
+            alert.addAction(button)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

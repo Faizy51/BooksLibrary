@@ -93,7 +93,7 @@
         <!--Books Collection View Controller-->
         <scene sceneID="hLX-VM-g7L">
             <objects>
-                <collectionViewController id="739-vI-OX2" customClass="BooksCollectionViewController" customModule="IgSolPOC" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="BooksCollectionViewController" id="739-vI-OX2" customClass="BooksCollectionViewController" customModule="IgSolPOC" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="a3v-tc-cj5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
