@@ -34,6 +34,8 @@
 		189AFB81247931C4001CBC78 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 189AFB6E247931C4001CBC78 /* Montserrat-Light.ttf */; };
 		189AFB82247931C4001CBC78 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 189AFB6F247931C4001CBC78 /* Montserrat-Regular.ttf */; };
 		189AFB8524797488001CBC78 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AFB8424797488001CBC78 /* CategoryCell.swift */; };
+		189AFB87247A4AFD001CBC78 /* BooksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AFB86247A4AFD001CBC78 /* BooksCollectionViewController.swift */; };
+		189AFB89247A55AA001CBC78 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AFB88247A55AA001CBC78 /* BookCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		189AFB6E247931C4001CBC78 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.ttf"; path = "Fonts/Montserrat-Light.ttf"; sourceTree = SOURCE_ROOT; };
 		189AFB6F247931C4001CBC78 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "Fonts/Montserrat-Regular.ttf"; sourceTree = SOURCE_ROOT; };
 		189AFB8424797488001CBC78 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		189AFB86247A4AFD001CBC78 /* BooksCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCollectionViewController.swift; sourceTree = "<group>"; };
+		189AFB88247A55AA001CBC78 /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				189AFB3F2478A3C4001CBC78 /* SceneDelegate.swift */,
 				189AFB412478A3C4001CBC78 /* ViewController.swift */,
 				189AFB8424797488001CBC78 /* CategoryCell.swift */,
+				189AFB88247A55AA001CBC78 /* BookCell.swift */,
+				189AFB86247A4AFD001CBC78 /* BooksCollectionViewController.swift */,
 				189AFB432478A3C4001CBC78 /* Main.storyboard */,
 				189AFB512478A46B001CBC78 /* Services.swift */,
 				189AFB532478AF44001CBC78 /* DataModel.swift */,
@@ -231,8 +237,10 @@
 				189AFB422478A3C4001CBC78 /* ViewController.swift in Sources */,
 				189AFB522478A46B001CBC78 /* Services.swift in Sources */,
 				189AFB3E2478A3C4001CBC78 /* AppDelegate.swift in Sources */,
+				189AFB89247A55AA001CBC78 /* BookCell.swift in Sources */,
 				189AFB402478A3C4001CBC78 /* SceneDelegate.swift in Sources */,
 				189AFB8524797488001CBC78 /* CategoryCell.swift in Sources */,
+				189AFB87247A4AFD001CBC78 /* BooksCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

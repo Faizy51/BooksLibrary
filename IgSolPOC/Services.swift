@@ -9,45 +9,65 @@
 import Foundation
 
 enum Category: String {
-    case fiction
-    case drama
-    case humor
-    case politics
-    case philosophy
-    case history
-    case adventure
+    case Fiction
+    case Drama
+    case Humour
+    case Politics
+    case Philosophy
+    case History
+    case Adventure
 }
 
 struct ServiceType {
-    static let bookListBaseUrl = "https://gutendex.com/books"
+    static let bookListBaseUrl = "https://gutendex.com/books?"
     
     static func urlForCategory(_ category: Category) -> URL? {
-        return URL(string: "\(self.bookListBaseUrl)/?topic=\(category.rawValue)")
+        return URL(string: "\(self.bookListBaseUrl)topic=\(category.rawValue)")
+    }
+    
+    static func urlForSearch(_ text: String) -> URL? {
+        var string = "\(self.bookListBaseUrl)search="
+        if let encodedString = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) {
+            string += encodedString
+        }
+        
+        return URL(string: string)
     }
 }
 
 class Services {
     
-    func downloadBooks(for category: Category) {
-        let session = URLSession.shared
+    let session = URLSession.shared
+    
+    func downloadBooks(for category: Category, with callback: ((DataModel, Error?) -> ())?) {
         if let url = ServiceType.urlForCategory(category) {
-            session.dataTask(with: url) { (data, response, error) in
-                if let responseError = error {
-                    print("error ",responseError)
-                }
-                else if let recievedData = data {
-                    // Parse into model
-                    do {
-                        let bookData = try JSONDecoder().decode(DataModel.self, from: recievedData)
-                        print(bookData.count)
-                    }
-                    catch(let exception) {
-                        print("error ",exception)
-                    }
-                    
-                }
-            }.resume()
+            self.downloadBooks(for: url, with: callback)
         }
+    }
+    
+    func downloadBooks(forSearchText text: String, with callback: ((DataModel, Error?) -> ())?) {
+        if let searchUrl = ServiceType.urlForSearch(text), text.count > 0 {
+            self.downloadBooks(for: searchUrl, with: callback)
+        }
+    }
+    
+    private func downloadBooks(for url: URL, with callback: ((DataModel, Error?) -> ())?) {
+        self.session.dataTask(with: url) { (data, response, error) in
+            if let responseError = error {
+                print("error ",responseError)
+            }
+            else if let recievedData = data {
+                // Parse into model
+                do {
+                    let bookData = try JSONDecoder().decode(DataModel.self, from: recievedData)
+                    callback?(bookData, error)
+                }
+                catch(let exception) {
+                    print("error ",exception)
+                }
+                
+            }
+        }.resume()
     }
     
 }

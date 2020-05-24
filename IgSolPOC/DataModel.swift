@@ -29,7 +29,7 @@ struct Book: Codable {
 
 struct DataModel: Codable {
     var count: Int
-    var next: String
+    var next: String?
     var previous: String?
     var results: [Book]
 }
