@@ -23,10 +23,6 @@ class BooksCollectionViewController: UICollectionViewController, UICollectionVie
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Do any additional setup after loading the view.
         // Implement Search Controller
         self.resultSearchController = ({
             
@@ -44,7 +40,6 @@ class BooksCollectionViewController: UICollectionViewController, UICollectionVie
         controller.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
         customiseSearchBar()
-        
         downloadBooksData()
         
     }
@@ -61,28 +56,12 @@ class BooksCollectionViewController: UICollectionViewController, UICollectionVie
         navigationItem.hidesSearchBarWhenScrolling = true
         
     }
-    
-    
-    
+        
     func customiseSearchBar() {
         
-        // Do any additional setup after loading the view.
-//        self.title = "test test"
-        
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-//        navigationController?.navigationBar.prefersLargeTitles = true
-//        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: (self.navigationController?.navigationBar.frame.width)!, height: 500.0)
-//        controller.searchBar.backgroundColor = UIColor(red: 0.94, green: 0.94, blue: 0.96, alpha: 1.00)
-//        controller.searchBar.barTintColor = UIColor.white
-//        controller.searchBar.tintColor = UIColor.blue
-//        controller.searchBar.searchBarStyle = .minimal
-//        controller.searchBar.backgroundImage = UIImage()
-//        controller.searchBar.backgroundColor = UIColor.clear
         let searchBarTextField = controller.searchBar.searchTextField
         searchBarTextField.textColor = UIColor.black
         searchBarTextField.font = UIFont(name: "Montserrat-Regular", size: 14)
-//        searchBarTextField.tintColor = UIColor(red: 0.94, green: 0.94, blue: 0.96, alpha: 1.00)
         searchBarTextField.layer.cornerRadius = 4
         searchBarTextField.layer.borderWidth = 1
         searchBarTextField.layer.borderColor = UIColor.white.cgColor
@@ -90,27 +69,7 @@ class BooksCollectionViewController: UICollectionViewController, UICollectionVie
         UISearchBar.appearance().setImage(UIImage(named: "Cancel"), for: .clear, state: .highlighted)
             
         searchBarTextField.leftView = UIImageView(image: UIImage(named: "Search"))
-            
-        
-//        controller.searchBar.layer.borderWidth = 2.0
-//        controller.searchBar.layer.borderColor = UIColor.black.cgColor
-//        controller.searchBar.layer.cornerRadius = 15.0
-//        controller.searchBar.barTintColor = UIColor(red: 255 / 255.0, green: 246 / 255.0, blue: 241 / 255.0, alpha: 1.0)
-//        controller.searchBar.backgroundColor = UIColor.clear
-//
-//        let textField = controller.searchBar.searchTextField
-//        textField.textColor = UIColor.brown
-//        textField.placeholder = "Search"
-//        textField.leftViewMode = .never //hiding left view
-//        textField.backgroundColor = UIColor(red: 255 / 255.0, green: 246 / 255.0, blue: 241 / 255.0, alpha: 1.0)
-//        textField.font = UIFont.systemFont(ofSize: 18.0)
-//        textField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: UIColor.brown])
-//
-//        let imgview = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 30))
-//        imgview.image = UIImage(named: "searchIcon.png") //you need to set search icon for textfield's righ view
-//
-//        textField.rightView = imgview
-//        textField.rightViewMode = .always
+
     }
     
     func downloadBooksData() {
@@ -208,6 +167,12 @@ class BooksCollectionViewController: UICollectionViewController, UICollectionVie
         cell?.book = listOfBooks[indexPath.row]
     
         return cell!
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let listOfBooks = (controller.isActive && self.searchedBookList.count > 0 ) ? self.searchedBookList : self.bookList
+        
+        let urlToOpen = listOfBooks[indexPath.row].formats
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

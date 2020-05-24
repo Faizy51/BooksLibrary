@@ -21,7 +21,6 @@ struct Book: Codable {
     var subjects: [String]
     var bookshelves: [String]
     var languages: [String]
-    var copyright: Bool
     var media_type: String
     var formats: [String: String]
     var download_count: Int

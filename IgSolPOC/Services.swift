@@ -19,14 +19,14 @@ enum Category: String {
 }
 
 struct ServiceType {
-    static let bookListBaseUrl = "https://gutendex.com/books?"
+    static let bookListBaseUrl = "http://skunkworks.ignitesol.com:8000/books/?mime_type=image%2Fjpeg"
     
     static func urlForCategory(_ category: Category) -> URL? {
-        return URL(string: "\(self.bookListBaseUrl)topic=\(category.rawValue)")
+        return URL(string: "\(self.bookListBaseUrl)&topic=\(category.rawValue)")
     }
     
     static func urlForSearch(_ text: String) -> URL? {
-        var string = "\(self.bookListBaseUrl)search="
+        var string = "\(self.bookListBaseUrl)&search="
         if let encodedString = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) {
             string += encodedString
         }
