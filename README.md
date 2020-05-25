@@ -3,7 +3,11 @@ A small app to read books of different categories.
 
 ## Preview
 
-![Preview](books.gif)
+
+Screenshot                 |  Video preview
+:-------------------------:|:-------------------------:
+![Screenshot](homeScreen.png)  |  ![Preview](books.gif)
+
 
 ## Issues:
 1. Search functionality is not very user-friendly. Refreshes the view frequently for every charachter entered.
