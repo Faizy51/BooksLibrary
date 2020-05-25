@@ -12,7 +12,6 @@
 		189AFB422478A3C4001CBC78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AFB412478A3C4001CBC78 /* ViewController.swift */; };
 		189AFB452478A3C4001CBC78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189AFB432478A3C4001CBC78 /* Main.storyboard */; };
 		189AFB472478A3C7001CBC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189AFB462478A3C7001CBC78 /* Assets.xcassets */; };
-		189AFB4A2478A3C7001CBC78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189AFB482478A3C7001CBC78 /* LaunchScreen.storyboard */; };
 		189AFB522478A46B001CBC78 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AFB512478A46B001CBC78 /* Services.swift */; };
 		189AFB542478AF44001CBC78 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AFB532478AF44001CBC78 /* DataModel.swift */; };
 		189AFB70247931C4001CBC78 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 189AFB5D247931C3001CBC78 /* Montserrat-LightItalic.ttf */; };
@@ -36,6 +35,8 @@
 		189AFB8524797488001CBC78 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AFB8424797488001CBC78 /* CategoryCell.swift */; };
 		189AFB87247A4AFD001CBC78 /* BooksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AFB86247A4AFD001CBC78 /* BooksCollectionViewController.swift */; };
 		189AFB89247A55AA001CBC78 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AFB88247A55AA001CBC78 /* BookCell.swift */; };
+		189AFB8B247B88D4001CBC78 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AFB8A247B88D4001CBC78 /* CustomImageView.swift */; };
+		189AFB97247B9043001CBC78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189AFB95247B9043001CBC78 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +46,6 @@
 		189AFB412478A3C4001CBC78 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		189AFB442478A3C4001CBC78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		189AFB462478A3C7001CBC78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		189AFB492478A3C7001CBC78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		189AFB4B2478A3C7001CBC78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		189AFB512478A46B001CBC78 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		189AFB532478AF44001CBC78 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
@@ -70,6 +70,8 @@
 		189AFB8424797488001CBC78 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		189AFB86247A4AFD001CBC78 /* BooksCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCollectionViewController.swift; sourceTree = "<group>"; };
 		189AFB88247A55AA001CBC78 /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		189AFB8A247B88D4001CBC78 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		189AFB96247B9043001CBC78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,19 +104,16 @@
 		189AFB3C2478A3C4001CBC78 /* IgSolPOC */ = {
 			isa = PBXGroup;
 			children = (
+				189AFB95247B9043001CBC78 /* LaunchScreen.storyboard */,
 				189AFB3D2478A3C4001CBC78 /* AppDelegate.swift */,
 				189AFB3F2478A3C4001CBC78 /* SceneDelegate.swift */,
-				189AFB412478A3C4001CBC78 /* ViewController.swift */,
-				189AFB8424797488001CBC78 /* CategoryCell.swift */,
-				189AFB88247A55AA001CBC78 /* BookCell.swift */,
-				189AFB86247A4AFD001CBC78 /* BooksCollectionViewController.swift */,
 				189AFB432478A3C4001CBC78 /* Main.storyboard */,
-				189AFB512478A46B001CBC78 /* Services.swift */,
-				189AFB532478AF44001CBC78 /* DataModel.swift */,
-				189AFB462478A3C7001CBC78 /* Assets.xcassets */,
-				189AFB482478A3C7001CBC78 /* LaunchScreen.storyboard */,
+				189AFB92247B8D43001CBC78 /* Resources */,
+				189AFB8D247B8BEE001CBC78 /* Controllers */,
+				189AFB8E247B8BFD001CBC78 /* View */,
+				189AFB91247B8C22001CBC78 /* Service */,
+				189AFB8F247B8C08001CBC78 /* Model */,
 				189AFB83247931EF001CBC78 /* Fonts */,
-				189AFB4B2478A3C7001CBC78 /* Info.plist */,
 			);
 			path = IgSolPOC;
 			sourceTree = "<group>";
@@ -142,6 +141,50 @@
 				189AFB61247931C3001CBC78 /* Montserrat-ThinItalic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		189AFB8D247B8BEE001CBC78 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				189AFB412478A3C4001CBC78 /* ViewController.swift */,
+				189AFB86247A4AFD001CBC78 /* BooksCollectionViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		189AFB8E247B8BFD001CBC78 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				189AFB8424797488001CBC78 /* CategoryCell.swift */,
+				189AFB8A247B88D4001CBC78 /* CustomImageView.swift */,
+				189AFB88247A55AA001CBC78 /* BookCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		189AFB8F247B8C08001CBC78 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				189AFB532478AF44001CBC78 /* DataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		189AFB91247B8C22001CBC78 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				189AFB512478A46B001CBC78 /* Services.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		189AFB92247B8D43001CBC78 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				189AFB462478A3C7001CBC78 /* Assets.xcassets */,
+				189AFB4B2478A3C7001CBC78 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,7 +254,6 @@
 				189AFB76247931C4001CBC78 /* Montserrat-Black.ttf in Resources */,
 				189AFB70247931C4001CBC78 /* Montserrat-LightItalic.ttf in Resources */,
 				189AFB74247931C4001CBC78 /* Montserrat-ThinItalic.ttf in Resources */,
-				189AFB4A2478A3C7001CBC78 /* LaunchScreen.storyboard in Resources */,
 				189AFB7A247931C4001CBC78 /* Montserrat-Bold.ttf in Resources */,
 				189AFB82247931C4001CBC78 /* Montserrat-Regular.ttf in Resources */,
 				189AFB472478A3C7001CBC78 /* Assets.xcassets in Resources */,
@@ -221,6 +263,7 @@
 				189AFB452478A3C4001CBC78 /* Main.storyboard in Resources */,
 				189AFB75247931C4001CBC78 /* Montserrat-Medium.ttf in Resources */,
 				189AFB80247931C4001CBC78 /* Montserrat-ExtraLightItalic.ttf in Resources */,
+				189AFB97247B9043001CBC78 /* LaunchScreen.storyboard in Resources */,
 				189AFB73247931C4001CBC78 /* Montserrat-Thin.ttf in Resources */,
 				189AFB77247931C4001CBC78 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 			);
@@ -234,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				189AFB542478AF44001CBC78 /* DataModel.swift in Sources */,
+				189AFB8B247B88D4001CBC78 /* CustomImageView.swift in Sources */,
 				189AFB422478A3C4001CBC78 /* ViewController.swift in Sources */,
 				189AFB522478A46B001CBC78 /* Services.swift in Sources */,
 				189AFB3E2478A3C4001CBC78 /* AppDelegate.swift in Sources */,
@@ -255,10 +299,10 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		189AFB482478A3C7001CBC78 /* LaunchScreen.storyboard */ = {
+		189AFB95247B9043001CBC78 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				189AFB492478A3C7001CBC78 /* Base */,
+				189AFB96247B9043001CBC78 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -386,7 +430,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6HN4W8V8KL;
-				INFOPLIST_FILE = IgSolPOC/Info.plist;
+				INFOPLIST_FILE = IgSolPOC/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -404,7 +448,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6HN4W8V8KL;
-				INFOPLIST_FILE = IgSolPOC/Info.plist;
+				INFOPLIST_FILE = IgSolPOC/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

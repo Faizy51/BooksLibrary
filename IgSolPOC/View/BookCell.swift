@@ -25,7 +25,7 @@ class BookCell: UICollectionViewCell {
         }
     }
 
-    // Re arrange the name into proper fnam-lname format.
+    // Re arrange the name into proper fname lname format.
     func reOrganiseName(name: String) -> String {
         var finalName = ""
         
@@ -42,9 +42,6 @@ class BookCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-//        self.bookImage.layer.masksToBounds = true
-//        self.bookImage.layer.cornerRadius = 10
     }
 
 }
