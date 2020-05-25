@@ -1,5 +1,6 @@
 # BooksLibrary
 A small app to read books of different categories.
+NOTE: Please use a plus size device for best viewing experience.
 
 ## Preview
 
